@@ -15,6 +15,7 @@ ball.prototype.draw= function() {
     fill(71, 117, 255);
     ellipse(this.x, newY, this.h, this.h);
 };
+
 ball.prototype.control=function(){
    if (keyIsPressed && keyCode === LEFT) {
        this.x-=2;
@@ -23,11 +24,45 @@ ball.prototype.control=function(){
        this.x+=2;
    }
 };
+
+//Method to check for platform collision 
+ball.prototype.checkForPlatform = function(platform) {
+    if ((platform.x >= this.x && platform.x <= (this.x + 40)) &&
+        (platform.y >= this.y && platform.y <= (this.y + 40))) {
+        platform.y = 0;
+        this.platform++;
+    }
+};
+
+var Platform = function(x, y) {
+    this.x = x;
+    this.y = y;
+};
+
+Platform.prototype.draw = function() {
+    fill(89, 71, 0);
+    rectMode(CENTER);
+    rect(this.x, this.y, 68, 4);
+};
+
 var Ball=new ball();
 
+var platform = [];
+for (var i = 0; i < 10; i++) {  
+    platform.push(new Platform(random(10, 350), i * 40));
+}
+
 var draw = function() {
-    background(255, 255, 255);
+    background(176, 212, 255);
     Ball.draw();
+    fill(130, 79, 43);
+    rectMode(CORNER);
+    rect(0, height*0.97, width, height*0.10);
+    for (var i = 0; i < platform.length; i++) {
+        platform[i].draw();
+        Ball.checkForPlatform(platform[i]);
+        platform[i].x -= 1;
+    }
     Ball.control();
     if (y < 0) { // if y becomes negative, the ball has hit the ground
         t = 0;// reset t to make it "bounce" up again
