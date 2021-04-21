@@ -1,7 +1,8 @@
 var currentColor = color(0, 0, 0); //start color
 var currentLetter = "K"; 
 
-var Button = function(config) {
+var Button = function(config) 
+{
     this.x = config.x || 0;
     this.y = config.y || 0;
     this.width = config.width || 150;
@@ -10,8 +11,9 @@ var Button = function(config) {
     this.onClick = config.onClick || function() {};
 };
 
-Button.prototype.draw = function() {
-    fill(0, 234, 255);
+Button.prototype.draw = function() 
+{
+    fill(0, 145, 255);
     rect(this.x, this.y, this.width, this.height, 5);
     fill(0, 0, 0);
     textSize(19);
@@ -19,59 +21,123 @@ Button.prototype.draw = function() {
     text(this.label, this.x+10, this.y+this.height/4);
 };
 
-Button.prototype.isMouseInside = function() {
+Button.prototype.isMouseInside = function() 
+{
     return mouseX > this.x &&
            mouseX < (this.x + this.width) &&
            mouseY > this.y &&
            mouseY < (this.y + this.height);
 };
 
-Button.prototype.handleMouseClick = function() {
-    if (this.isMouseInside()) {
+Button.prototype.handleMouseClick = function() 
+{
+    if (this.isMouseInside()) 
+    {
         this.onClick();
     }
 };
 
-var yellowButton = new Button({
+var redButton = new Button
+({
     x: 293,
-    y: 181,
-    width: 100,
-    label: "Yellow",
-    onClick: function() {
-        currentColor = color(245, 215, 66);
-        //text("You made the right choice!", this.x, this.y+this.height);
-    }
-});
-yellowButton.draw();
-
-var redButton = new Button({
-    x: 293,
-    y: 81,
+    y: 7,
     width: 100,
     label: "Red",
-    onClick: function() {
+    onClick: function() 
+    {
      currentColor = color(242, 48, 48);
-        //text("You made the right choice!", this.x, this.y+this.height);
+      
     }
 });
-redButton.draw();
 
-mouseClicked = function() {
-    yellowButton.handleMouseClick();
+
+var orangeButton = new Button
+({
+    x:293,
+    y:62,
+    width:100,
+    label: "Orange",
+    onClick: function() 
+    {
+     currentColor = color(245, 127, 73);
+    }
+});
+
+
+var yellowButton = new Button
+({
+    x: 293,
+    y: 118,
+    width: 100,
+    label: "Yellow",
+    onClick: function() 
+    {
+        currentColor = color(245, 215, 66);
+    }
+});
+
+var greenButton = new Button
+({
+    x: 293,
+    y: 173,
+    width: 100,
+    label: "Green",
+    onClick: function() 
+    {
+        currentColor = color(61, 158, 81);
+    }
+});
+
+var blueButton = new Button
+({
+    x: 293,
+    y: 229,
+    width: 100,
+    label: "Blue",
+    onClick: function() 
+    {
+        currentColor = color(112, 172, 235);
+    }
+});
+
+var purpleButton = new Button
+({
+    x: 293,
+    y: 285,
+    width: 100,
+    label: "Purple",
+    onClick: function() 
+    {
+        currentColor = color(126, 61, 245);
+    }
+});
+
+mouseClicked = function() 
+{
     redButton.handleMouseClick();
+    orangeButton.handleMouseClick();
+    yellowButton.handleMouseClick();
+    greenButton.handleMouseClick();
+    blueButton.handleMouseClick();
+    purpleButton.handleMouseClick();
 };
 
 
 
-background(103, 163, 78);
-yellowButton.draw();
+background(125, 212, 87);
 redButton.draw();
+orangeButton.draw();
+yellowButton.draw();
+greenButton.draw();
+blueButton.draw();
+purpleButton.draw();
 fill(255, 255, 255); //fill for K 
-textSize(350);
+textSize(339);
 text(currentLetter, 15, 0);
 
 
-mouseDragged = function() {
+mouseDragged = function() 
+{
     fill(currentColor);
     noStroke();
     ellipse(mouseX, mouseY, 20, 20);
