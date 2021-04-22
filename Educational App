@@ -429,6 +429,18 @@ var purpleButton = new Button
     }
 });
 
+var backButton = new Button 
+({
+    x: 20,
+    y: 320,
+    width: 100,
+    label: "Back",
+    onClick: function() 
+    {
+        scene = 1;
+        isDrawing = false; 
+    }
+});
 
 mouseClicked = function() 
 {
@@ -464,6 +476,7 @@ mouseClicked = function()
     greenButton.handleMouseClick();
     blueButton.handleMouseClick();
     purpleButton.handleMouseClick();
+    backButton.handleMouseClick();
 };
 
 var drawing = function() 
@@ -475,15 +488,17 @@ var drawing = function()
     greenButton.draw();
     blueButton.draw();
     purpleButton.draw();
+    backButton.draw();
     fill(255, 255, 255); 
-    textSize(200);
+    textSize(170);
     text(currentLetter, 15, 0);
 };
 
-background(217, 84, 111);
 
-if(scene === 1)
+
+var mainScreen = function()
 {
+    background(217, 84, 111);
     letterA.draw();
     letterB.draw();
     letterC.draw();
@@ -510,20 +525,25 @@ if(scene === 1)
     letterX.draw();
     letterY.draw();
     letterZ.draw();
-}
+};
+
 
 mouseDragged = function() 
 {
     if(scene > 1 && isDrawing === true) 
-        {
-            fill(currentColor);
-            noStroke();
-            ellipse(mouseX, mouseY, 10, 10);
-        }
+    {
+        fill(currentColor);
+        noStroke();
+        ellipse(mouseX, mouseY, 10, 10);
+    }
 };
 
 draw = function() 
 {
+    if(scene === 1 && isDrawing === false)
+    {
+        mainScreen();
+    }
     if(scene > 1 && isDrawing === false) 
     {
         isDrawing = true;
@@ -531,3 +551,6 @@ draw = function()
     }
 
 };
+
+
+
