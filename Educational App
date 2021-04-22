@@ -514,9 +514,12 @@ if(scene === 1)
 
 mouseDragged = function() 
 {
-    fill(currentColor);
-    noStroke();
-    ellipse(mouseX, mouseY, 10, 10);
+    if(scene > 1 && isDrawing === true) 
+        {
+            fill(currentColor);
+            noStroke();
+            ellipse(mouseX, mouseY, 10, 10);
+        }
 };
 
 draw = function() 
