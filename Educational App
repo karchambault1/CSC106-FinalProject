@@ -444,6 +444,10 @@ var backButton = new Button
 
 mouseClicked = function() 
 {
+    {if (scene !==1){
+        backButton.handleMouseClick();
+    }
+    else {
     letterA.handleMouseClick();
     letterB.handleMouseClick();
     letterC.handleMouseClick();
@@ -477,6 +481,7 @@ mouseClicked = function()
     blueButton.handleMouseClick();
     purpleButton.handleMouseClick();
     backButton.handleMouseClick();
+    }
 };
 
 var drawing = function() 
