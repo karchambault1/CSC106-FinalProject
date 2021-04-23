@@ -1,10 +1,85 @@
+var drawBitmoji=function(bitmojiX,bitmojiY,bitmojiH){
+    var p =bitmojiH/100;
+    //skin tone
+    stroke(0,0,0);
+    fill(255,224,189); 
+    //neck
+    rect(bitmojiX-(16*p), bitmojiY+(32*p), 31*p, 48*p, 32*p); 
+    //head
+    ellipse(bitmojiX+p,bitmojiY+p,68*p,100*p); 
+    //chin   
+    arc(bitmojiX+p,bitmojiY+(46*p), 19*p, 13*p, 7, 154); 
+    //shirt
+    noStroke();
+    fill(255,182,193);
+    quad(bitmojiX-(55*p), bitmojiY+(42*p), bitmojiX+p, bitmojiY+(59*p), bitmojiX+p,            bitmojiY+(90*p), bitmojiX-(55*p), bitmojiY+(90*p)); 
+    quad(bitmojiX+p,bitmojiY+(59*p),bitmojiX+(54*p),bitmojiY+(42*p),bitmojiX+(54*p),           bitmojiY+(90*p),bitmojiX+p,bitmojiY+(90*p));
+    //skin tone
+    stroke(0,0,0);
+    fill(255,224,189); 
+    //eyebrow
+    noStroke();
+    fill(122, 67, 35);
+    arc(bitmojiX-(13*p),bitmojiY-(10*p),17*p,-4*p,0,134); 
+    arc(bitmojiX+(20*p),bitmojiY-(10*p),23*p,-4*p,0,146);
+    //brown hair
+    fill(128, 81, 39); 
+    quad(bitmojiX-(50*p),bitmojiY+(93*p),bitmojiX-(35*p),bitmojiY-(38*p),bitmojiX-(19*p)       ,bitmojiY-(35*p),bitmojiX-(35*p),bitmojiY+(92*p));
+    quad(bitmojiX+(50*p),bitmojiY+(93*p),bitmojiX+(35*p),bitmojiY-(39*p),bitmojiX+(17*p)       ,bitmojiY-(42*p),bitmojiX+(37*p),bitmojiY+(91*p));
+    ellipse(bitmojiX+p,bitmojiY-(37*p),71*p,27*p);
+    //eyes
+    stroke(0, 0, 0);
+    fill(250, 250, 250);
+    ellipse(bitmojiX-(10*p),bitmojiY+p,12*p,8*p); //left 
+    ellipse(bitmojiX+(15*p),bitmojiY+p,12*p,8*p); //right 
+    fill(101, 67, 33);
+    ellipse(bitmojiX-(10*p),bitmojiY+p,3*p,3*p); //pupils
+    ellipse(bitmojiX+(15*p),bitmojiY+p,3*p,3*p);
+    //nose
+    fill(255,224,189); 
+    bezier(bitmojiX+p,bitmojiY+p,bitmojiX+(20*p),bitmojiY+(27*p),bitmojiX-(2*p),
+    bitmojiY+(12*p),bitmojiX+p,bitmojiY+(17*p));
+    //smile
+    stroke(199, 52, 93); 
+    strokeWeight(1.4);
+    fill(255,255,255);
+    arc(bitmojiX+p,bitmojiY+(28*p),30*p,13*p,1,166); 
+    line(bitmojiX-(13*p),bitmojiY+(29*p), bitmojiX+(15*p), bitmojiY+(28*p)); //upper lip
+    //sunglasses
+    fill(51, 46, 46); 
+    stroke(101, 67, 33);
+    ellipse(bitmojiX-(13*p),bitmojiY-(36*p),19*p,15*p);
+    ellipse(bitmojiX+(14*p),bitmojiY-(36*p),19*p,15*p);
+    fill(101,67,33);
+    arc(bitmojiX+p,bitmojiY-(36*p),10*p,-3*p,-3,120);
+    stroke(101, 67, 33);
+    strokeWeight(2);
+    line(bitmojiX-(23*p), bitmojiY-(35*p), bitmojiX-(33*p), bitmojiY-(9*p));
+    line(bitmojiX+(23*p), bitmojiY-(35*p), bitmojiX+(33*p), bitmojiY-(9*p));
+    //Initials
+    stroke(3, 8, 3);
+    strokeWeight(3);
+    line(bitmojiX-(20*p), bitmojiY+(63*p), bitmojiX-(20*p), bitmojiY+(81*p));//E
+    line(bitmojiX-(7*p), bitmojiY+(81*p), bitmojiX-(20*p), bitmojiY+(81*p));
+    line(bitmojiX-(7*p), bitmojiY+(63*p), bitmojiX-(20*p),bitmojiY+(63*p));
+    line(bitmojiX-(10*p), bitmojiY+(72*p),bitmojiX-(19*p),bitmojiY+(72*p));
+    noFill();
+    arc(bitmojiX+(10*p),bitmojiY+(72*p),13*p,20*p,2,308);//G
+    line(bitmojiX+(17*p),bitmojiY+(72*p),bitmojiX+(9*p),bitmojiY+(72*p));
+    //necklace
+    noFill(); 
+    stroke(192, 192, 192);
+    strokeWeight(1.5);
+    arc(bitmojiX+p,bitmojiY+(47*p),33*p,38*p,22,161); 
+    fill(192,192,192);
+    ellipse(bitmojiX+p,bitmojiY+(67*p),3*p,3*p);
+};
 var currentColor = color(0, 0, 0); //start color
 var currentLetter; 
-var scene = 1;
+var scene = 0;
 var isDrawing = false;
 
-var Button = function(config) 
-{
+var Button = function(config){
     this.x = config.x || 0;
     this.y = config.y || 0;
     this.width = config.width || 50;
@@ -13,8 +88,7 @@ var Button = function(config)
     this.onClick = config.onClick || function() {};
 };
 
-Button.prototype.draw = function() 
-{
+Button.prototype.draw = function(){
     stroke(255, 255, 255);
     fill(255,165,0);
     rect(this.x, this.y, this.width, this.height, 5);
@@ -24,484 +98,383 @@ Button.prototype.draw = function()
     text(this.label, this.x+10, this.y+this.height/4);
 };
 
-Button.prototype.isMouseInside = function() 
-{
+Button.prototype.isMouseInside = function(){
     return mouseX > this.x &&
            mouseX < (this.x + this.width) &&
            mouseY > this.y &&
            mouseY < (this.y + this.height);
 };
 
-Button.prototype.handleMouseClick = function() 
-{
+Button.prototype.handleMouseClick = function(){
     if (this.isMouseInside()) 
     {
         this.onClick();
     }
 };
 
+var startButton = new Button({ //new button 
+    x: 161,
+    y: 267,
+    width:90,
+    label: "Start !",
+    onClick: function() {
+        scene=1; //when button is clicked go to scene 1
+    }
+});
 
-
-var letterA = new Button
-({
+var letterA = new Button({
     x: 20,
     y: 30,
     label: "A a",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 2;
         currentLetter = "Aa";
     }
 });
 
-var letterB= new Button
-({
+var letterB= new Button({
     x: 100,
     y: 30,
     label: "B b",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 3;
         currentLetter = "Bb";
     }
 });
 
-var letterC= new Button
-({
+var letterC= new Button({
     x: 175,
     y: 30,
     label: "C c",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 4;
         currentLetter = "Cc";
     }
 });
 
-var letterD= new Button
-({
+var letterD= new Button({
     x: 255,
     y: 30,
     label: "D d",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 5;
         currentLetter = "Dd";
     }
 });
 
-var letterE= new Button
-({
+var letterE= new Button({
     x: 330,
     y: 30,
     label: "E e",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 6;
         currentLetter = "Ee";
     }
 });
 
-var letterF= new Button
-({
+var letterF= new Button({
     x: 20,
     y: 90,
     label: "F f",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 7;
         currentLetter = "Ff";
     }
 });
 
-var letterG= new Button
-({
+var letterG= new Button({
     x: 100,
     y: 90,
     label: "G g",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 8;
         currentLetter = "Gg";
     }
 });
 
-var letterH= new Button
-({
+var letterH= new Button({
     x: 175,
     y: 90,
     label: "H h",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 9;
         currentLetter = "Hh";
     }
 });
 
-var letterI= new Button
-({
+var letterI= new Button({
     x: 255,
     y: 90,
     label: "I i",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 10;
         currentLetter = "Ii";
     }
 });
 
-var letterJ= new Button
-({
+var letterJ= new Button({
     x: 330,
     y: 90,
     label: "J j",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 11;
         currentLetter = "Jj";
     }
 });
 
-var letterK= new Button
-({
+var letterK= new Button({
     x: 20,
     y: 150,
     label: "K k",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 12;
         currentLetter = "Kk";
     }
 });
 
-var letterL= new Button
-({
+var letterL= new Button({
     x: 100,
     y: 150,
     label: "L l",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 13;
         currentLetter = "Ll";
     }
 });
 
-var letterM= new Button
-({
+var letterM= new Button({
     x: 175,
     y: 150,
     label: "M m",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 14;
         currentLetter = "Mm";
     }
 });
 
-var letterN= new Button
-({
+var letterN= new Button({
     x: 255,
     y: 150,
     label: "N n",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 15;
         currentLetter = "Nn";
     }
 });
 
-var letterO= new Button
-({
+var letterO= new Button({
     x: 330,
     y: 150,
     label: "O o",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 16;
         currentLetter = "Oo";
     }
 });
 
-var letterP= new Button
-({
+var letterP= new Button({
     x: 20,
     y: 210,
     label: "P p",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 17;
         currentLetter = "Pp";
     }
 });
 
-var letterQ= new Button
-({
+var letterQ= new Button({
     x: 100,
     y: 210,
     label: "Q q",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 18;
         currentLetter = "Qq";
     }
 });
 
-var letterR= new Button
-({
+var letterR= new Button({
     x: 175,
     y: 210,
     label: "R r",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 19;
         currentLetter = "Rr";
     }
 });
 
-var letterS= new Button
-({
+var letterS= new Button({
     x: 255,
     y: 210,
     label: "S s",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 20;
         currentLetter = "Ss";
     }
 });
 
-var letterT= new Button
-({
+var letterT= new Button({
     x: 330,
     y: 210,
     label: "T t",
-    onClick: function() 
-    {
+    onClick: function(){
        scene = 21;
        currentLetter = "Tt";
     }
 });
 
-var letterU= new Button
-({
+var letterU= new Button({
     x: 20,
     y: 270,
     label: "U u",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 22;
         currentLetter = "Uu";
     }
 });
 
-var letterV= new Button
-({
+var letterV= new Button({
     x: 100,
     y: 270,
     label: "V v",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 23;
         currentLetter = "Vv";
     }
 });
 
-var letterW= new Button
-({
+var letterW= new Button({
     x: 175,
     y: 270,
     label: "W w",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 24;
         currentLetter = "Ww";
     }
 });
 
-var letterX= new Button
-({
+var letterX= new Button({
     x: 255,
     y: 270,
     label: "X x",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 25;
         currentLetter = "Xx";
     }
 });
 
-var letterY= new Button
-({
+var letterY= new Button({
     x: 330,
     y: 270,
     label: "Y y",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 26;
         currentLetter = "Yy";
     }
 });
 
-var letterZ= new Button
-({
+var letterZ= new Button({
     x: 20,
     y: 330,
     label: "Z z",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 27;
         currentLetter = "Zz";
     }
 });
 
-var redButton = new Button
-({
+var redButton = new Button({
     x: 293,
     y: 7,
     width: 100,
     label: "Red",
-    onClick: function() 
-    {
+    onClick: function(){
      currentColor = color(242, 48, 48);
       
     }
 });
 
-
-var orangeButton = new Button
-({
+var orangeButton = new Button({
     x:293,
     y:62,
     width:100,
     label: "Orange",
-    onClick: function() 
-    {
+    onClick: function(){
         currentColor = color(245, 127, 73);
     }
 });
 
-
-var yellowButton = new Button
-({
+var yellowButton = new Button({
     x: 293,
     y: 118,
     width: 100,
     label: "Yellow",
-    onClick: function() 
-    {
+    onClick: function(){
         currentColor = color(245, 215, 66);
     }
 });
 
-var greenButton = new Button
-({
+var greenButton = new Button({
     x: 293,
     y: 173,
     width: 100,
     label: "Green",
-    onClick: function() 
-    {
+    onClick: function(){
         currentColor = color(61, 158, 81);
     }
 });
 
-var blueButton = new Button
-({
+var blueButton = new Button({
     x: 293,
     y: 229,
     width: 100,
     label: "Blue",
-    onClick: function() 
-    {
+    onClick: function(){
         currentColor = color(112, 172, 235);
     }
 });
 
-var purpleButton = new Button
-({
+var purpleButton = new Button({
     x: 293,
     y: 285,
     width: 100,
     label: "Purple",
-    onClick: function() 
-    {
+    onClick: function(){
         currentColor = color(126, 61, 245);
     }
 });
 
-var backButton = new Button 
-({
+var backButton = new Button({
     x: 20,
     y: 320,
     width: 100,
     label: "Back",
-    onClick: function() 
-    {
+    onClick: function(){
         scene = 1;
         isDrawing = false; 
     }
 });
 
-mouseClicked = function() 
-{
-    {if (scene !==1){
-        backButton.handleMouseClick();
-    }
-    else {
-    letterA.handleMouseClick();
-    letterB.handleMouseClick();
-    letterC.handleMouseClick();
-    letterD.handleMouseClick();
-    letterE.handleMouseClick();
-    letterF.handleMouseClick();
-    letterG.handleMouseClick();
-    letterH.handleMouseClick();
-    letterI.handleMouseClick();
-    letterJ.handleMouseClick();
-    letterK.handleMouseClick();
-    letterL.handleMouseClick();
-    letterM.handleMouseClick();
-    letterN.handleMouseClick();
-    letterO.handleMouseClick();
-    letterP.handleMouseClick();
-    letterQ.handleMouseClick();
-    letterR.handleMouseClick();
-    letterS.handleMouseClick();
-    letterT.handleMouseClick();
-    letterU.handleMouseClick();
-    letterV.handleMouseClick();
-    letterW.handleMouseClick();
-    letterX.handleMouseClick();
-    letterY.handleMouseClick();
-    letterZ.handleMouseClick();
-    redButton.handleMouseClick();
-    orangeButton.handleMouseClick();
-    yellowButton.handleMouseClick();
-    greenButton.handleMouseClick();
-    blueButton.handleMouseClick();
-    purpleButton.handleMouseClick();
-    }
+var drawScene0=function(){
+    background(153, 204, 255);
+    var f = createFont("cursive");
+    textFont(f);
+    fill(235, 102, 255);
+    textSize(35);
+    text("Drawing Letters", 70, 16);
+    textSize(30);
+    text("Educational App for Kids!", 28, 64);
+    fill(0, 0, 0);
+    textSize(20);
+    text("Instructions:", 14, 116);
+    textSize(16);
+    text("Learn how to draw letters by tracing the letters of the alphabet. The goal is to stay within the line. Earn more points by drawing more letters.", 14,147,373,117);
+    textSize(15);
+    text("Created by: Emily Gautreaux and Kaleigh Archambault", 6, 375);
+    startButton.draw();
+    drawBitmoji(80,270,75);
 };
 
-var drawing = function() 
-{
-    background(125, 212, 87);
-    redButton.draw();
-    orangeButton.draw();
-    yellowButton.draw();
-    greenButton.draw();
-    blueButton.draw();
-    purpleButton.draw();
-    backButton.draw();
-    fill(255, 255, 255); 
-    textSize(170);
-    text(currentLetter, 15, 0);
-};
-
-
-
-var mainScreen = function()
-{
+var drawScene1 = function(){
     background(217, 84, 111);
     letterA.draw();
     letterB.draw();
@@ -531,30 +504,80 @@ var mainScreen = function()
     letterZ.draw();
 };
 
+var drawScene2 = function(){
+    background(125, 212, 87);
+    redButton.draw();
+    orangeButton.draw();
+    yellowButton.draw();
+    greenButton.draw();
+    blueButton.draw();
+    purpleButton.draw();
+    backButton.draw();
+    fill(255, 255, 255); 
+    textSize(170);
+    text(currentLetter, 15, 0);
+};
 
-mouseDragged = function() 
-{
-    if(scene > 1 && isDrawing === true) 
-    {
+mouseClicked = function(){
+    if (scene===0){
+        startButton.handleMouseClick();
+    }
+    if(scene===1){
+        letterA.handleMouseClick();
+        letterB.handleMouseClick();
+        letterC.handleMouseClick();
+        letterD.handleMouseClick();
+        letterE.handleMouseClick();
+        letterF.handleMouseClick();
+        letterG.handleMouseClick();
+        letterH.handleMouseClick();
+        letterI.handleMouseClick();
+        letterJ.handleMouseClick();
+        letterK.handleMouseClick();
+        letterL.handleMouseClick();
+        letterM.handleMouseClick();
+        letterN.handleMouseClick();
+        letterO.handleMouseClick();
+        letterP.handleMouseClick();
+        letterQ.handleMouseClick();
+        letterR.handleMouseClick();
+        letterS.handleMouseClick();
+        letterT.handleMouseClick();
+        letterU.handleMouseClick();
+        letterV.handleMouseClick();
+        letterW.handleMouseClick();
+        letterX.handleMouseClick();
+        letterY.handleMouseClick();
+        letterZ.handleMouseClick();
+    }
+    else{
+        redButton.handleMouseClick();
+        orangeButton.handleMouseClick();
+        yellowButton.handleMouseClick();
+        greenButton.handleMouseClick();
+        blueButton.handleMouseClick();
+        purpleButton.handleMouseClick();
+        backButton.handleMouseClick();
+    }
+};
+
+mouseDragged = function(){
+    if(scene > 1 && isDrawing === true){
         fill(currentColor);
         noStroke();
         ellipse(mouseX, mouseY, 10, 10);
     }
 };
 
-draw = function() 
-{
-    if(scene === 1 && isDrawing === false)
-    {
-        mainScreen();
+draw = function(){
+    if (scene===0){
+    drawScene0();
     }
-    if(scene > 1 && isDrawing === false) 
-    {
+    if(scene === 1 && isDrawing === false){
+        drawScene1();
+    }
+    if(scene > 1 && isDrawing === false){
         isDrawing = true;
-        drawing();
+        drawScene2();
     }
-
 };
-
-
-
