@@ -78,6 +78,7 @@ var currentColor = color(0, 0, 0); //start color
 var currentLetter; 
 var scene = 0;
 var isDrawing = false;
+var score=0;
 
 var Button = function(config){
     this.x = config.x || 0;
@@ -502,6 +503,8 @@ var drawScene1 = function(){
     letterX.draw();
     letterY.draw();
     letterZ.draw();
+    textSize(20);
+    text("Score: " + score, 140,350);
 };
 
 var drawScene2 = function(){
@@ -515,7 +518,10 @@ var drawScene2 = function(){
     backButton.draw();
     fill(255, 255, 255); 
     textSize(170);
-    text(currentLetter, 15, 0);
+    text(currentLetter, 14, 0);
+    fill(217, 84, 111);
+    textSize(20);
+    text("Score: " + score, 140,330);
 };
 
 mouseClicked = function(){
@@ -558,6 +564,7 @@ mouseClicked = function(){
         blueButton.handleMouseClick();
         purpleButton.handleMouseClick();
         backButton.handleMouseClick();
+        score++;
     }
 };
 
@@ -581,3 +588,6 @@ draw = function(){
         drawScene2();
     }
 };
+
+
+
