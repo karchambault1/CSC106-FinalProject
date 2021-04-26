@@ -74,11 +74,55 @@ var drawBitmoji=function(bitmojiX,bitmojiY,bitmojiH){
     fill(192,192,192);
     ellipse(bitmojiX+p,bitmojiY+(67*p),3*p,3*p);
 };
+
+var traceBitmoji = function(bitmojiX,bitmojiY,bitmojiH)
+{   
+    var p=bitmojiH/100; //variable to change proportion of bitmoji
+    
+    fill(0, 0, 0);
+    rect(bitmojiX-24*p, bitmojiY+36*p, 48*p, 59*p); //shirt
+    noStroke();
+    fill (255, 231, 203); //fill to skin tone
+    ellipse (bitmojiX, bitmojiY-6*p, 83*p, 94*p); //head
+    fill(153, 204, 255);
+    arc(bitmojiX-40*p, bitmojiY+39*p, 28*p, 55*p, 0, 361); //left chisel
+    arc(bitmojiX+42*p, bitmojiY+34*p, 28*p, 55*p, 0, 361); //right chisel
+    fill(0, 102, 255);//jacket fill
+    quad(bitmojiX-52*p, bitmojiY+49*p, bitmojiX-22*p, bitmojiY+34*p, bitmojiX-20*p,             bitmojiY+74*p, bitmojiX-19*p, bitmojiY+107*p); //left jacket
+    quad(bitmojiX+19*p, bitmojiY+110*p, bitmojiX+22*p, bitmojiY+35*p, bitmojiX+49*p,            bitmojiY+44*p, bitmojiX+24*p, bitmojiY+103*p); //right jacket
+    fill(255, 119, 0); //red hair
+    quad(bitmojiX-57*p, bitmojiY+55*p, bitmojiX-40*p, bitmojiY-44*p, bitmojiX-3*p,              bitmojiY-45*p, bitmojiX-34*p, bitmojiY+13*p); //left hair
+    quad(bitmojiX+49*p, bitmojiY+59*p, bitmojiX+45*p, bitmojiY-40*p, bitmojiX+9*p,              bitmojiY-49*p, bitmojiX+30*p, bitmojiY-4*p); //right hair
+    quad(bitmojiX+28*p, bitmojiY+20*p, bitmojiX-3*p, bitmojiY-53*p, bitmojiX+13*p,              bitmojiY-43*p, bitmojiX+33*p, bitmojiY-9*p); //bangs
+    ellipse(bitmojiX, bitmojiY-42*p, 69*p, 32*p); //top hair
+    fill(179, 179, 179); //hat fill
+    arc(bitmojiX+1*p, bitmojiY-34*p, 90*p, 61*p, 185, 355); //hat
+    fill(14, 162, 181); //blue eyes fill
+    stroke(0, 0, 0);
+    ellipse(bitmojiX-12*p, bitmojiY, 9*p, 8*p); //left eye
+    ellipse(bitmojiX+13*p, bitmojiY,9*p, 8*p); //right eye
+    fill(255, 231, 203); //fill to skin tone
+    bezier(bitmojiX, bitmojiY, bitmojiX+13*p, bitmojiY+19*p, bitmojiX, bitmojiY+11*p,           bitmojiX, bitmojiY+14*p); //nose
+    fill(255, 140, 178); //fill for lips
+    arc(bitmojiX, bitmojiY+24*p, 21*p, 8*p, 1, 180); //mouth
+    line(bitmojiX-10*p, bitmojiY+24*p, bitmojiX+11*p, bitmojiY+24*p); //top
+    stroke(163, 130, 80);
+    line(bitmojiX-18*p, bitmojiY-11*p, bitmojiX-6*p, bitmojiY-9*p); //left eyebrow
+    line(bitmojiX+8*p, bitmojiY-9*p, bitmojiX+21*p, bitmojiY-12*p); //right eyebrow
+    stroke(5, 5, 5);
+    strokeWeight(2);
+    point(bitmojiX-12*p, bitmojiY);//left pupil
+    point(bitmojiX+13*p,bitmojiY);//right pupil
+    fill(255, 255, 255);
+    textSize(20*p);
+    text("KA",bitmojiX-13*p, bitmojiY+72*p); //shirt text
+};
+
 var currentColor = color(0, 0, 0); //start color
 var currentLetter; 
 var scene = 0;
 var isDrawing = false;
-var score=0;
+var score = 0;
 
 var Button = function(config){
     this.x = config.x || 0;
@@ -115,7 +159,7 @@ Button.prototype.handleMouseClick = function(){
 
 var startButton = new Button({ //new button 
     x: 161,
-    y: 267,
+    y: 314,
     width:90,
     label: "Start !",
     onClick: function() {
@@ -449,13 +493,15 @@ var backButton = new Button({
     y: 320,
     width: 100,
     label: "Back",
-    onClick: function(){
+    onClick: function()
+    {
         scene = 1;
         isDrawing = false; 
     }
 });
 
-var drawScene0=function(){
+var drawScene0=function()
+{
     background(153, 204, 255);
     var f = createFont("cursive");
     textFont(f);
@@ -473,9 +519,11 @@ var drawScene0=function(){
     text("Created by: Emily Gautreaux and Kaleigh Archambault", 6, 375);
     startButton.draw();
     drawBitmoji(80,270,75);
+    traceBitmoji(320, 270, 75);
 };
 
-var drawScene1 = function(){
+var drawScene1 = function()
+{
     background(217, 84, 111);
     letterA.draw();
     letterB.draw();
@@ -507,7 +555,8 @@ var drawScene1 = function(){
     text("Score: " + score, 140,350);
 };
 
-var drawScene2 = function(){
+var drawScene2 = function()
+{
     background(125, 212, 87);
     redButton.draw();
     orangeButton.draw();
@@ -524,8 +573,10 @@ var drawScene2 = function(){
     text("Score: " + score, 140,330);
 };
 
-mouseClicked = function(){
-    if (scene===0){
+mouseClicked = function()
+{
+    if (scene===0)
+    {
         startButton.handleMouseClick();
     }
     if(scene===1){
@@ -556,7 +607,8 @@ mouseClicked = function(){
         letterY.handleMouseClick();
         letterZ.handleMouseClick();
     }
-    else{
+    else
+    {
         redButton.handleMouseClick();
         orangeButton.handleMouseClick();
         yellowButton.handleMouseClick();
@@ -568,26 +620,29 @@ mouseClicked = function(){
     }
 };
 
-mouseDragged = function(){
-    if(scene > 1 && isDrawing === true){
+mouseDragged = function()
+{
+    if(scene > 1 && isDrawing === true)
+    {
         fill(currentColor);
         noStroke();
         ellipse(mouseX, mouseY, 10, 10);
     }
 };
 
-draw = function(){
-    if (scene===0){
-    drawScene0();
+draw = function()
+{
+    if (scene===0)
+    {
+        drawScene0();
     }
-    if(scene === 1 && isDrawing === false){
+    if(scene === 1 && isDrawing === false)
+    {
         drawScene1();
     }
-    if(scene > 1 && isDrawing === false){
+    if(scene > 1 && isDrawing === false)
+    {
         isDrawing = true;
         drawScene2();
     }
 };
-
-
-
