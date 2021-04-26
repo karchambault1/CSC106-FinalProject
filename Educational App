@@ -75,8 +75,7 @@ var drawBitmoji=function(bitmojiX,bitmojiY,bitmojiH){
     ellipse(bitmojiX+p,bitmojiY+(67*p),3*p,3*p);
 };
 
-var traceBitmoji = function(bitmojiX,bitmojiY,bitmojiH)
-{   
+var traceBitmoji = function(bitmojiX,bitmojiY,bitmojiH){   
     var p=bitmojiH/100; //variable to change proportion of bitmoji
     
     fill(0, 0, 0);
@@ -182,7 +181,7 @@ var letterB= new Button({
     y: 30,
     label: "B b",
     onClick: function(){
-        scene = 3;
+        scene = 2;
         currentLetter = "Bb";
     }
 });
@@ -192,7 +191,7 @@ var letterC= new Button({
     y: 30,
     label: "C c",
     onClick: function(){
-        scene = 4;
+        scene = 2;
         currentLetter = "Cc";
     }
 });
@@ -202,7 +201,7 @@ var letterD= new Button({
     y: 30,
     label: "D d",
     onClick: function(){
-        scene = 5;
+        scene = 2;
         currentLetter = "Dd";
     }
 });
@@ -212,7 +211,7 @@ var letterE= new Button({
     y: 30,
     label: "E e",
     onClick: function(){
-        scene = 6;
+        scene = 2;
         currentLetter = "Ee";
     }
 });
@@ -222,7 +221,7 @@ var letterF= new Button({
     y: 90,
     label: "F f",
     onClick: function(){
-        scene = 7;
+        scene = 2;
         currentLetter = "Ff";
     }
 });
@@ -232,7 +231,7 @@ var letterG= new Button({
     y: 90,
     label: "G g",
     onClick: function(){
-        scene = 8;
+        scene = 2;
         currentLetter = "Gg";
     }
 });
@@ -242,7 +241,7 @@ var letterH= new Button({
     y: 90,
     label: "H h",
     onClick: function(){
-        scene = 9;
+        scene = 2;
         currentLetter = "Hh";
     }
 });
@@ -252,7 +251,7 @@ var letterI= new Button({
     y: 90,
     label: "I i",
     onClick: function(){
-        scene = 10;
+        scene = 2;
         currentLetter = "Ii";
     }
 });
@@ -262,7 +261,7 @@ var letterJ= new Button({
     y: 90,
     label: "J j",
     onClick: function(){
-        scene = 11;
+        scene = 2;
         currentLetter = "Jj";
     }
 });
@@ -272,7 +271,7 @@ var letterK= new Button({
     y: 150,
     label: "K k",
     onClick: function(){
-        scene = 12;
+        scene = 2;
         currentLetter = "Kk";
     }
 });
@@ -282,7 +281,7 @@ var letterL= new Button({
     y: 150,
     label: "L l",
     onClick: function(){
-        scene = 13;
+        scene = 2;
         currentLetter = "Ll";
     }
 });
@@ -292,7 +291,7 @@ var letterM= new Button({
     y: 150,
     label: "M m",
     onClick: function(){
-        scene = 14;
+        scene = 2;
         currentLetter = "Mm";
     }
 });
@@ -302,7 +301,7 @@ var letterN= new Button({
     y: 150,
     label: "N n",
     onClick: function(){
-        scene = 15;
+        scene = 2;
         currentLetter = "Nn";
     }
 });
@@ -312,7 +311,7 @@ var letterO= new Button({
     y: 150,
     label: "O o",
     onClick: function(){
-        scene = 16;
+        scene = 2;
         currentLetter = "Oo";
     }
 });
@@ -322,7 +321,7 @@ var letterP= new Button({
     y: 210,
     label: "P p",
     onClick: function(){
-        scene = 17;
+        scene = 2;
         currentLetter = "Pp";
     }
 });
@@ -332,7 +331,7 @@ var letterQ= new Button({
     y: 210,
     label: "Q q",
     onClick: function(){
-        scene = 18;
+        scene = 2;
         currentLetter = "Qq";
     }
 });
@@ -342,7 +341,7 @@ var letterR= new Button({
     y: 210,
     label: "R r",
     onClick: function(){
-        scene = 19;
+        scene = 2;
         currentLetter = "Rr";
     }
 });
@@ -352,7 +351,7 @@ var letterS= new Button({
     y: 210,
     label: "S s",
     onClick: function(){
-        scene = 20;
+        scene = 2;
         currentLetter = "Ss";
     }
 });
@@ -362,7 +361,7 @@ var letterT= new Button({
     y: 210,
     label: "T t",
     onClick: function(){
-       scene = 21;
+       scene = 2;
        currentLetter = "Tt";
     }
 });
@@ -372,7 +371,7 @@ var letterU= new Button({
     y: 270,
     label: "U u",
     onClick: function(){
-        scene = 22;
+        scene = 2;
         currentLetter = "Uu";
     }
 });
@@ -382,7 +381,7 @@ var letterV= new Button({
     y: 270,
     label: "V v",
     onClick: function(){
-        scene = 23;
+        scene = 2;
         currentLetter = "Vv";
     }
 });
@@ -392,7 +391,7 @@ var letterW= new Button({
     y: 270,
     label: "W w",
     onClick: function(){
-        scene = 24;
+        scene = 2;
         currentLetter = "Ww";
     }
 });
@@ -402,7 +401,7 @@ var letterX= new Button({
     y: 270,
     label: "X x",
     onClick: function(){
-        scene = 25;
+        scene = 2;
         currentLetter = "Xx";
     }
 });
@@ -412,7 +411,7 @@ var letterY= new Button({
     y: 270,
     label: "Y y",
     onClick: function(){
-        scene = 26;
+        scene = 2;
         currentLetter = "Yy";
     }
 });
@@ -422,12 +421,13 @@ var letterZ= new Button({
     y: 330,
     label: "Z z",
     onClick: function(){
-        scene = 27;
+        scene = 2;
         currentLetter = "Zz";
     }
 });
 
-var redButton = new Button({
+var colorSelectors = [
+    new Button({
     x: 293,
     y: 7,
     width: 100,
@@ -436,9 +436,7 @@ var redButton = new Button({
      currentColor = color(242, 48, 48);
       
     }
-});
-
-var orangeButton = new Button({
+}), new Button({
     x:293,
     y:62,
     width:100,
@@ -446,9 +444,7 @@ var orangeButton = new Button({
     onClick: function(){
         currentColor = color(245, 127, 73);
     }
-});
-
-var yellowButton = new Button({
+}), new Button({
     x: 293,
     y: 118,
     width: 100,
@@ -456,9 +452,7 @@ var yellowButton = new Button({
     onClick: function(){
         currentColor = color(245, 215, 66);
     }
-});
-
-var greenButton = new Button({
+}), new Button({
     x: 293,
     y: 173,
     width: 100,
@@ -466,9 +460,7 @@ var greenButton = new Button({
     onClick: function(){
         currentColor = color(61, 158, 81);
     }
-});
-
-var blueButton = new Button({
+}), new Button({
     x: 293,
     y: 229,
     width: 100,
@@ -476,9 +468,7 @@ var blueButton = new Button({
     onClick: function(){
         currentColor = color(112, 172, 235);
     }
-});
-
-var purpleButton = new Button({
+}), new Button({
     x: 293,
     y: 285,
     width: 100,
@@ -486,7 +476,7 @@ var purpleButton = new Button({
     onClick: function(){
         currentColor = color(126, 61, 245);
     }
-});
+})];
 
 var backButton = new Button({
     x: 20,
@@ -500,8 +490,7 @@ var backButton = new Button({
     }
 });
 
-var drawScene0=function()
-{
+var drawScene0=function(){
     background(153, 204, 255);
     var f = createFont("cursive");
     textFont(f);
@@ -522,8 +511,7 @@ var drawScene0=function()
     traceBitmoji(320, 270, 75);
 };
 
-var drawScene1 = function()
-{
+var drawScene1 = function(){
     background(217, 84, 111);
     letterA.draw();
     letterB.draw();
@@ -555,15 +543,11 @@ var drawScene1 = function()
     text("Score: " + score, 140,350);
 };
 
-var drawScene2 = function()
-{
+var drawScene2 = function(){
     background(125, 212, 87);
-    redButton.draw();
-    orangeButton.draw();
-    yellowButton.draw();
-    greenButton.draw();
-    blueButton.draw();
-    purpleButton.draw();
+    for( var j = 0; j < colorSelectors.length; j++){
+        colorSelectors[j].draw();   
+    }
     backButton.draw();
     fill(255, 255, 255); 
     textSize(170);
@@ -573,10 +557,8 @@ var drawScene2 = function()
     text("Score: " + score, 140,330);
 };
 
-mouseClicked = function()
-{
-    if (scene===0)
-    {
+mouseClicked = function(){
+    if (scene===0){
         startButton.handleMouseClick();
     }
     if(scene===1){
@@ -607,41 +589,31 @@ mouseClicked = function()
         letterY.handleMouseClick();
         letterZ.handleMouseClick();
     }
-    else
-    {
-        redButton.handleMouseClick();
-        orangeButton.handleMouseClick();
-        yellowButton.handleMouseClick();
-        greenButton.handleMouseClick();
-        blueButton.handleMouseClick();
-        purpleButton.handleMouseClick();
+    else{
+        for ( var m = 0; m < colorSelectors.length; m++){
+            colorSelectors[m].handleMouseClick();
+        }
         backButton.handleMouseClick();
         score++;
     }
 };
 
-mouseDragged = function()
-{
-    if(scene > 1 && isDrawing === true)
-    {
+mouseDragged = function(){
+    if(scene > 1 && isDrawing === true){
         fill(currentColor);
         noStroke();
         ellipse(mouseX, mouseY, 10, 10);
     }
 };
 
-draw = function()
-{
-    if (scene===0)
-    {
+draw = function(){
+    if (scene===0){
         drawScene0();
     }
-    if(scene === 1 && isDrawing === false)
-    {
+    if(scene === 1 && isDrawing === false){
         drawScene1();
     }
-    if(scene > 1 && isDrawing === false)
-    {
+    if(scene ===2 && isDrawing === false){
         isDrawing = true;
         drawScene2();
     }
