@@ -1,4 +1,5 @@
-var drawBitmoji=function(bitmojiX,bitmojiY,bitmojiH){
+var drawBitmoji=function(bitmojiX,bitmojiY,bitmojiH)
+{
     var p =bitmojiH/100;
     //skin tone
     stroke(0,0,0);
@@ -75,7 +76,8 @@ var drawBitmoji=function(bitmojiX,bitmojiY,bitmojiH){
     ellipse(bitmojiX+p,bitmojiY+(67*p),3*p,3*p);
 };
 
-var traceBitmoji = function(bitmojiX,bitmojiY,bitmojiH){   
+var traceBitmoji = function(bitmojiX,bitmojiY,bitmojiH)
+{   
     var p=bitmojiH/100; //variable to change proportion of bitmoji
     
     fill(0, 0, 0);
@@ -123,7 +125,8 @@ var scene = 0;
 var isDrawing = false;
 var score = 0;
 
-var Button = function(config){
+var Button = function(config)
+{
     this.x = config.x || 0;
     this.y = config.y || 0;
     this.width = config.width || 50;
@@ -132,7 +135,8 @@ var Button = function(config){
     this.onClick = config.onClick || function() {};
 };
 
-Button.prototype.draw = function(){
+Button.prototype.draw = function()
+{
     stroke(255, 255, 255);
     fill(255,165,0);
     rect(this.x, this.y, this.width, this.height, 5);
@@ -142,343 +146,394 @@ Button.prototype.draw = function(){
     text(this.label, this.x+10, this.y+this.height/4);
 };
 
-Button.prototype.isMouseInside = function(){
+Button.prototype.isMouseInside = function()
+{
     return mouseX > this.x &&
            mouseX < (this.x + this.width) &&
            mouseY > this.y &&
            mouseY < (this.y + this.height);
 };
 
-Button.prototype.handleMouseClick = function(){
+Button.prototype.handleMouseClick = function()
+{
     if (this.isMouseInside()) 
     {
         this.onClick();
     }
 };
 
-var startButton = new Button({ //new button 
+var startButton = new Button
+({ //new button 
     x: 161,
     y: 314,
     width:90,
     label: "Start !",
-    onClick: function() {
+    onClick: function() 
+    {
         scene=1; //when button is clicked go to scene 1
     }
 });
 
-var letterA = new Button({
-    x: 20,
-    y: 30,
-    label: "A a",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Aa";
-    }
-});
-
-var letterB= new Button({
-    x: 100,
-    y: 30,
-    label: "B b",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Bb";
-    }
-});
-
-var letterC= new Button({
-    x: 175,
-    y: 30,
-    label: "C c",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Cc";
-    }
-});
-
-var letterD= new Button({
-    x: 255,
-    y: 30,
-    label: "D d",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Dd";
-    }
-});
-
-var letterE= new Button({
-    x: 330,
-    y: 30,
-    label: "E e",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Ee";
-    }
-});
-
-var letterF= new Button({
-    x: 20,
-    y: 90,
-    label: "F f",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Ff";
-    }
-});
-
-var letterG= new Button({
-    x: 100,
-    y: 90,
-    label: "G g",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Gg";
-    }
-});
-
-var letterH= new Button({
-    x: 175,
-    y: 90,
-    label: "H h",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Hh";
-    }
-});
-
-var letterI= new Button({
-    x: 255,
-    y: 90,
-    label: "I i",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Ii";
-    }
-});
-
-var letterJ= new Button({
-    x: 330,
-    y: 90,
-    label: "J j",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Jj";
-    }
-});
-
-var letterK= new Button({
-    x: 20,
-    y: 150,
-    label: "K k",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Kk";
-    }
-});
-
-var letterL= new Button({
-    x: 100,
-    y: 150,
-    label: "L l",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Ll";
-    }
-});
-
-var letterM= new Button({
-    x: 175,
-    y: 150,
-    label: "M m",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Mm";
-    }
-});
-
-var letterN= new Button({
-    x: 255,
-    y: 150,
-    label: "N n",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Nn";
-    }
-});
-
-var letterO= new Button({
-    x: 330,
-    y: 150,
-    label: "O o",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Oo";
-    }
-});
-
-var letterP= new Button({
-    x: 20,
-    y: 210,
-    label: "P p",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Pp";
-    }
-});
-
-var letterQ= new Button({
-    x: 100,
-    y: 210,
-    label: "Q q",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Qq";
-    }
-});
-
-var letterR= new Button({
-    x: 175,
-    y: 210,
-    label: "R r",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Rr";
-    }
-});
-
-var letterS= new Button({
-    x: 255,
-    y: 210,
-    label: "S s",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Ss";
-    }
-});
-
-var letterT= new Button({
-    x: 330,
-    y: 210,
-    label: "T t",
-    onClick: function(){
-       scene = 2;
-       currentLetter = "Tt";
-    }
-});
-
-var letterU= new Button({
-    x: 20,
-    y: 270,
-    label: "U u",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Uu";
-    }
-});
-
-var letterV= new Button({
-    x: 100,
-    y: 270,
-    label: "V v",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Vv";
-    }
-});
-
-var letterW= new Button({
-    x: 175,
-    y: 270,
-    label: "W w",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Ww";
-    }
-});
-
-var letterX= new Button({
-    x: 255,
-    y: 270,
-    label: "X x",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Xx";
-    }
-});
-
-var letterY= new Button({
-    x: 330,
-    y: 270,
-    label: "Y y",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Yy";
-    }
-});
-
-var letterZ= new Button({
-    x: 20,
-    y: 330,
-    label: "Z z",
-    onClick: function(){
-        scene = 2;
-        currentLetter = "Zz";
-    }
-});
+var letterSelector = [
+    new Button
+    ({
+        x: 20,
+        y: 30,
+        label: "A a",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Aa";
+        }
+    }),
+    new Button
+    ({
+        x: 100,
+        y: 30,
+        label: "B b",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Bb";
+        }
+    }),
+    new Button
+    ({
+        x: 175,
+        y: 30,
+        label: "C c",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Cc";
+        }
+    }),
+    new Button
+    ({
+        x: 255,
+        y: 30,
+        label: "D d",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Dd";
+        }
+    }),
+    new Button
+    ({
+        x: 330,
+        y: 30,
+        label: "E e",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Ee";
+        }
+    }),
+    new Button
+    ({
+        x: 20,
+        y: 90,
+        label: "F f",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Ff";
+        }
+    }),
+    new Button
+    ({
+        x: 100,
+        y: 90,
+        label: "G g",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Gg";
+        }
+    }),
+    new Button
+    ({
+        x: 175,
+        y: 90,
+        label: "H h",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Hh";
+        }
+    }),
+    new Button
+    ({
+        x: 255,
+        y: 90,
+        label: "I i",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Ii";
+        }
+    }),
+    new Button
+    ({
+        x: 330,
+        y: 90,
+        label: "J j",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Jj";
+        }
+    }),
+    new Button
+    ({
+        x: 20,
+        y: 150,
+        label: "K k",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Kk";
+        }
+    }),
+    new Button
+    ({
+        x: 100,
+        y: 150,
+        label: "L l",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Ll";
+        }
+    }),
+    new Button
+    ({
+        x: 175,
+        y: 150,
+        label: "M m",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Mm";
+        }
+    }),
+    new Button
+    ({
+        x: 255,
+        y: 150,
+        label: "N n",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Nn";
+        }
+    }),
+    new Button
+    ({
+        x: 330,
+        y: 150,
+        label: "O o",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Oo";
+        }
+    }),
+    new Button
+    ({
+        x: 20,
+        y: 210,
+        label: "P p",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Pp";
+        }
+    }),
+    new Button
+    ({
+        x: 100,
+        y: 210,
+        label: "Q q",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Qq";
+        }
+    }),
+    new Button
+    ({
+        x: 175,
+        y: 210,
+        label: "R r",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Rr";
+        }
+    }),
+    new Button
+    ({
+        x: 255,
+        y: 210,
+        label: "S s",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Ss";
+        }
+    }),
+    new Button
+    ({
+        x: 330,
+        y: 210,
+        label: "T t",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Tt";
+        }
+    }),
+    new Button
+    ({
+        x: 20,
+        y: 270,
+        label: "U u",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Uu";
+        }
+    }),
+    new Button
+    ({
+        x: 100,
+        y: 270,
+        label: "V v",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Vv";
+        }
+    }),
+    new Button
+    ({
+        x: 175,
+        y: 270,
+        label: "W w",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Ww";
+        }
+    }),
+    new Button
+    ({
+        x: 255,
+        y: 270,
+        label: "X x",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Xx";
+        }   
+    }),
+    new Button
+    ({
+        x: 330,
+        y: 270,
+        label: "Y y",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Yy";
+        }
+    }),
+    new Button
+    ({
+        x: 20,
+        y: 330,
+        label: "Z z",
+        onClick: function()
+        {
+            scene = 2;
+            currentLetter = "Zz";
+        }
+    })
+];
 
 var colorSelectors = [
-    new Button({
-    x: 293,
-    y: 7,
-    width: 100,
-    label: "Red",
-    onClick: function(){
-     currentColor = color(242, 48, 48);
-      
-    }
-}), new Button({
-    x:293,
-    y:62,
-    width:100,
-    label: "Orange",
-    onClick: function(){
-        currentColor = color(245, 127, 73);
-    }
-}), new Button({
-    x: 293,
-    y: 118,
-    width: 100,
-    label: "Yellow",
-    onClick: function(){
-        currentColor = color(245, 215, 66);
-    }
-}), new Button({
-    x: 293,
-    y: 173,
-    width: 100,
-    label: "Green",
-    onClick: function(){
-        currentColor = color(61, 158, 81);
-    }
-}), new Button({
-    x: 293,
-    y: 229,
-    width: 100,
-    label: "Blue",
-    onClick: function(){
-        currentColor = color(112, 172, 235);
-    }
-}), new Button({
-    x: 293,
-    y: 285,
-    width: 100,
-    label: "Purple",
-    onClick: function(){
-        currentColor = color(126, 61, 245);
-    }
-})];
+    new Button
+    ({
+        x: 293,
+        y: 7,
+        width: 100,
+        label: "Red",
+        onClick: function()
+        {
+            currentColor = color(242, 48, 48);
+        }
+    }),
+    new Button
+    ({
+        x:293,
+        y:62,
+        width:100,
+        label: "Orange",
+        onClick: function()
+        {
+            currentColor = color(245, 127, 73);
+        }
+    }), 
+    new Button
+    ({
+        x: 293,
+        y: 118,
+        width: 100,
+        label: "Yellow",
+        onClick: function()
+        {
+            currentColor = color(245, 215, 66);
+        }
+    }), 
+    new Button
+    ({
+        x: 293,
+        y: 173,
+        width: 100,
+        label: "Green",
+        onClick: function()
+        {
+            currentColor = color(61, 158, 81);
+        }
+    }), 
+    new Button
+    ({
+        x: 293,
+        y: 229,
+        width: 100,
+        label: "Blue",
+        onClick: function()
+        {
+            currentColor = color(112, 172, 235);
+        }
+    }), 
+    new Button
+    ({
+        x: 293,
+        y: 285,
+        width: 100,
+        label: "Purple",
+        onClick: function()
+        {
+            currentColor = color(126, 61, 245);
+        }
+    })
+];
 
-var backButton = new Button({
+var backButton = new Button
+({
     x: 20,
     y: 320,
     width: 100,
@@ -490,7 +545,8 @@ var backButton = new Button({
     }
 });
 
-var drawScene0=function(){
+var drawScene0=function()
+{
     background(153, 204, 255);
     var f = createFont("cursive");
     textFont(f);
@@ -511,41 +567,22 @@ var drawScene0=function(){
     traceBitmoji(320, 270, 75);
 };
 
-var drawScene1 = function(){
+var drawScene1 = function()
+{
     background(217, 84, 111);
-    letterA.draw();
-    letterB.draw();
-    letterC.draw();
-    letterD.draw();
-    letterE.draw();
-    letterF.draw();
-    letterG.draw();
-    letterH.draw();
-    letterI.draw();
-    letterJ.draw();
-    letterK.draw();
-    letterL.draw();
-    letterM.draw();
-    letterN.draw();
-    letterO.draw();
-    letterP.draw();
-    letterQ.draw();
-    letterR.draw();
-    letterS.draw();
-    letterT.draw();
-    letterU.draw();
-    letterV.draw();
-    letterW.draw();
-    letterX.draw();
-    letterY.draw();
-    letterZ.draw();
+    for(var i = 0; i < letterSelector.length; i++) 
+    {
+        letterSelector[i].draw();
+    }
     textSize(20);
     text("Score: " + score, 140,350);
 };
 
-var drawScene2 = function(){
+var drawScene2 = function()
+{
     background(125, 212, 87);
-    for( var j = 0; j < colorSelectors.length; j++){
+    for( var j = 0; j < colorSelectors.length; j++)
+    {
         colorSelectors[j].draw();   
     }
     backButton.draw();
@@ -557,40 +594,23 @@ var drawScene2 = function(){
     text("Score: " + score, 140,330);
 };
 
-mouseClicked = function(){
-    if (scene===0){
+mouseClicked = function()
+{
+    if (scene===0)
+    {
         startButton.handleMouseClick();
     }
-    if(scene===1){
-        letterA.handleMouseClick();
-        letterB.handleMouseClick();
-        letterC.handleMouseClick();
-        letterD.handleMouseClick();
-        letterE.handleMouseClick();
-        letterF.handleMouseClick();
-        letterG.handleMouseClick();
-        letterH.handleMouseClick();
-        letterI.handleMouseClick();
-        letterJ.handleMouseClick();
-        letterK.handleMouseClick();
-        letterL.handleMouseClick();
-        letterM.handleMouseClick();
-        letterN.handleMouseClick();
-        letterO.handleMouseClick();
-        letterP.handleMouseClick();
-        letterQ.handleMouseClick();
-        letterR.handleMouseClick();
-        letterS.handleMouseClick();
-        letterT.handleMouseClick();
-        letterU.handleMouseClick();
-        letterV.handleMouseClick();
-        letterW.handleMouseClick();
-        letterX.handleMouseClick();
-        letterY.handleMouseClick();
-        letterZ.handleMouseClick();
+    if(scene===1)
+    {
+        for(var k = 0; k < letterSelector.length; k++)
+        {
+            letterSelector[k].handleMouseClick();
+        }
     }
-    else{
-        for ( var m = 0; m < colorSelectors.length; m++){
+    else
+    {
+        for ( var m = 0; m < colorSelectors.length; m++)
+        {
             colorSelectors[m].handleMouseClick();
         }
         backButton.handleMouseClick();
@@ -598,22 +618,28 @@ mouseClicked = function(){
     }
 };
 
-mouseDragged = function(){
-    if(scene > 1 && isDrawing === true){
+mouseDragged = function()
+{
+    if(scene > 1 && isDrawing === true)
+    {
         fill(currentColor);
         noStroke();
         ellipse(mouseX, mouseY, 10, 10);
     }
 };
 
-draw = function(){
-    if (scene===0){
+draw = function()
+{
+    if (scene===0)
+    {
         drawScene0();
     }
-    if(scene === 1 && isDrawing === false){
+    if(scene === 1 && isDrawing === false)
+    {
         drawScene1();
     }
-    if(scene ===2 && isDrawing === false){
+    if(scene ===2 && isDrawing === false)
+    {
         isDrawing = true;
         drawScene2();
     }
