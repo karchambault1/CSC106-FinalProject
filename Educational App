@@ -76,6 +76,7 @@ var drawBitmoji=function(bitmojiX,bitmojiY,bitmojiH)
     ellipse(bitmojiX+p,bitmojiY+(67*p),3*p,3*p);
 };
 
+//Function to draw Kasleigh's bitmoji when called
 var traceBitmoji = function(bitmojiX,bitmojiY,bitmojiH)
 {   
     var p=bitmojiH/100; //variable to change proportion of bitmoji
@@ -119,12 +120,14 @@ var traceBitmoji = function(bitmojiX,bitmojiY,bitmojiH)
     text("KA",bitmojiX-13*p, bitmojiY+72*p); //shirt text
 };
 
+//Global variables used later in code
 var currentColor = color(0, 0, 0); //start color
-var currentLetter; 
-var scene = 0;
-var isDrawing = false;
-var score = 0;
+var currentLetter; //sets current letter
+var scene = 0; //sets current scene
+var isDrawing = false; //sets whether user can draw
+var score = 0; //sets score
 
+//Khan Academy's button class
 var Button = function(config)
 {
     this.x = config.x || 0;
@@ -174,6 +177,9 @@ var startButton = new Button
     }
 });
 
+/*Array of buttons for each letter in the alphabet,
+use khan academy's button class to set coordinates, label,
+and on click function*/
 var letterSelector = [
     new Button
     ({
@@ -532,6 +538,8 @@ var colorSelectors = [
     })
 ];
 
+/*Back button that allows the user to go back to the
+letter selection screen when clicked*/
 var backButton = new Button
 ({
     x: 20,
@@ -578,6 +586,10 @@ var drawScene1 = function()
     text("Score: " + score, 140,350);
 };
 
+/*Draws the main drawing scene when called. Uses a for
+loop to display color selection, displays white text of
+letters to be traced, and adds to the score for each color 
+used*/
 var drawScene2 = function()
 {
     background(125, 212, 87);
@@ -594,6 +606,9 @@ var drawScene2 = function()
     text("Score: " + score, 140,330);
 };
 
+/*mouseClicked function that allows the user to click on the 
+buttons on different scenes, loops through the array of buttons,
+and adds to the score when a color is clicked on*/
 mouseClicked = function()
 {
     if (scene===0)
@@ -618,6 +633,9 @@ mouseClicked = function()
     }
 };
 
+/*A mouse dragged function that allows the user to draw with the
+mouse depending on the color they choose and that they are on the
+drawing scene of the game*/
 mouseDragged = function()
 {
     if(scene > 1 && isDrawing === true)
@@ -628,6 +646,8 @@ mouseDragged = function()
     }
 };
 
+/*Main draw function for the game, allows the user
+to switch between the different scenes of the game*/
 draw = function()
 {
     if (scene===0)
