@@ -1,5 +1,5 @@
-var drawBitmoji=function(bitmojiX,bitmojiY,bitmojiH)
-{
+//Emily's drawBitmoji function
+var drawBitmoji=function(bitmojiX,bitmojiY,bitmojiH){
     var p =bitmojiH/100;
     //skin tone
     stroke(0,0,0);
@@ -77,8 +77,7 @@ var drawBitmoji=function(bitmojiX,bitmojiY,bitmojiH)
 };
 
 //Function to draw Kasleigh's bitmoji when called
-var traceBitmoji = function(bitmojiX,bitmojiY,bitmojiH)
-{   
+var traceBitmoji = function(bitmojiX,bitmojiY,bitmojiH){   
     var p=bitmojiH/100; //variable to change proportion of bitmoji
     
     fill(0, 0, 0);
@@ -128,8 +127,7 @@ var isDrawing = false; //sets whether user can draw
 var score = 0; //sets score
 
 //Khan Academy's button class
-var Button = function(config)
-{
+var Button = function(config){
     this.x = config.x || 0;
     this.y = config.y || 0;
     this.width = config.width || 50;
@@ -138,8 +136,7 @@ var Button = function(config)
     this.onClick = config.onClick || function() {};
 };
 
-Button.prototype.draw = function()
-{
+Button.prototype.draw = function(){
     stroke(255, 255, 255);
     fill(255,165,0);
     rect(this.x, this.y, this.width, this.height, 5);
@@ -149,30 +146,27 @@ Button.prototype.draw = function()
     text(this.label, this.x+10, this.y+this.height/4);
 };
 
-Button.prototype.isMouseInside = function()
-{
+Button.prototype.isMouseInside = function(){
     return mouseX > this.x &&
            mouseX < (this.x + this.width) &&
            mouseY > this.y &&
            mouseY < (this.y + this.height);
 };
 
-Button.prototype.handleMouseClick = function()
-{
+Button.prototype.handleMouseClick = function(){
     if (this.isMouseInside()) 
     {
         this.onClick();
     }
 };
 
-var startButton = new Button
-({ //new button 
+/* Start button that allows the user to begin the program*/
+var startButton = new Button({ //home screen start button 
     x: 161,
     y: 314,
     width:90,
     label: "Start !",
-    onClick: function() 
-    {
+    onClick: function(){
         scene=1; //when button is clicked go to scene 1
     }
 });
@@ -469,6 +463,7 @@ var letterSelector = [
     })
 ];
 
+//array of buttons for the tracing colors 
 var colorSelectors = [
     new Button
     ({
@@ -536,12 +531,11 @@ var colorSelectors = [
             currentColor = color(126, 61, 245);
         }
     })
-];
+]; 
 
 /*Back button that allows the user to go back to the
 letter selection screen when clicked*/
-var backButton = new Button
-({
+var backButton = new Button({
     x: 20,
     y: 320,
     width: 100,
@@ -553,8 +547,8 @@ var backButton = new Button
     }
 });
 
-var drawScene0=function()
-{
+//function that draws the splash screen
+var drawScene0=function(){
     background(153, 204, 255);
     var f = createFont("cursive");
     textFont(f);
@@ -570,15 +564,15 @@ var drawScene0=function()
     text("Learn how to draw letters by tracing the letters of the alphabet. The goal is to stay within the line. Earn more points by drawing more letters.", 14,147,373,117);
     textSize(15);
     text("Created by: Emily Gautreaux and Kaleigh Archambault", 6, 375);
-    startButton.draw();
-    drawBitmoji(80,270,75);
-    traceBitmoji(320, 270, 75);
+    startButton.draw();  //implement start button 
+    drawBitmoji(80,270,75); //calling Emily's drawBitmoji function
+    traceBitmoji(320, 270, 75); //calling Kaleigh's traceBitmoji function
 };
 
-var drawScene1 = function()
-{
+//function that draws the letter selecting scene 
+var drawScene1 = function(){
     background(217, 84, 111);
-    for(var i = 0; i < letterSelector.length; i++) 
+    for(var i = 0; i < letterSelector.length; i++) //for loop that draws the 26 buttons
     {
         letterSelector[i].draw();
     }
@@ -590,14 +584,12 @@ var drawScene1 = function()
 loop to display color selection, displays white text of
 letters to be traced, and adds to the score for each color 
 used*/
-var drawScene2 = function()
-{
+var drawScene2 = function(){
     background(125, 212, 87);
-    for( var j = 0; j < colorSelectors.length; j++)
-    {
+    for( var j = 0; j < colorSelectors.length; j++){
         colorSelectors[j].draw();   
     }
-    backButton.draw();
+    backButton.draw(); 
     fill(255, 255, 255); 
     textSize(170);
     text(currentLetter, 14, 0);
@@ -609,37 +601,29 @@ var drawScene2 = function()
 /*mouseClicked function that allows the user to click on the 
 buttons on different scenes, loops through the array of buttons,
 and adds to the score when a color is clicked on*/
-mouseClicked = function()
-{
-    if (scene===0)
-    {
+mouseClicked = function(){
+    if (scene===0){ //only allow start button to be clicked on in scene 0
         startButton.handleMouseClick();
     }
-    if(scene===1)
-    {
-        for(var k = 0; k < letterSelector.length; k++)
-        {
+    if(scene===1){ //only allow letters to be clicked on in scene 1
+        for(var k = 0; k < letterSelector.length; k++){
             letterSelector[k].handleMouseClick();
         }
     }
-    else
-    {
-        for ( var m = 0; m < colorSelectors.length; m++)
-        {
+    else{
+        for ( var m = 0; m < colorSelectors.length; m++){ //select color buttons in scene 2
             colorSelectors[m].handleMouseClick();
         }
-        backButton.handleMouseClick();
-        score++;
+        backButton.handleMouseClick();//select back button only in scene 2
+        score++; //increase score
     }
 };
 
 /*A mouse dragged function that allows the user to draw with the
 mouse depending on the color they choose and that they are on the
 drawing scene of the game*/
-mouseDragged = function()
-{
-    if(scene > 1 && isDrawing === true)
-    {
+mouseDragged = function(){
+    if(scene ===2  && isDrawing === true){ 
         fill(currentColor);
         noStroke();
         ellipse(mouseX, mouseY, 10, 10);
@@ -648,18 +632,14 @@ mouseDragged = function()
 
 /*Main draw function for the game, allows the user
 to switch between the different scenes of the game*/
-draw = function()
-{
-    if (scene===0)
-    {
+draw = function(){
+    if (scene===0){
         drawScene0();
     }
-    if(scene === 1 && isDrawing === false)
-    {
+    if(scene === 1 && isDrawing === false){
         drawScene1();
     }
-    if(scene ===2 && isDrawing === false)
-    {
+    if(scene ===2 && isDrawing === false){
         isDrawing = true;
         drawScene2();
     }
